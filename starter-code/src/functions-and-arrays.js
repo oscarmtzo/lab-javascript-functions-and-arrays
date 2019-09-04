@@ -143,17 +143,34 @@ var wordsFind = [
   'truth',
   'disobedience'
 ];
-let doesWordExist = (arr, word) =>{
+let doesWordExist = (arr, word, newArr,state) =>{
   word=''
+  newArr=[]
   if(arr.length==0){
     return  false
   }else if( arr.length>=1){
-    if(arr.includes(word)){
-      return true
-    }else {
-      return false
+    for(let i=0; i<arr.length; i++){
+      if(!newArr.includes(arr[i])){
+        newArr.push(arr[i])
+      }
     }
-    return true
+    /*for(let i=0; i<arr.length; i++){
+      if(arr.includes(newArr[i])){
+        state= true
+        return state
+      }else{
+        state=false
+        return state
+      }
+    }*/
+    if(!arr.includes(word)){
+      state=true
+      return state
+    }else if(arr.includes(word)==false){
+      state=false
+      return state
+    }
+     
   }
 }
 
@@ -171,6 +188,26 @@ var wordsCount = [
   'disobedience',
   'matter'
 ];
+let howManyTimes = (arr,searchWord, arrWords) => {
+  arrWords=[]
+  //console.log('searchWord:',searchWord)
+  if(arr.length==0){
+    //console.log(false)
+    return false
+  }
+  //console.log('paso el primer condicional')
+  else if( arr.length >=1 ){
+    for(let i =0; i<arr.length; i++){
+      //console.log(arr[i])
+      if(arr[i]===searchWord){
+        //console.log(i)
+        arrWords.push(arr[i])
+      }
+    }
+    //console.log(arrWords.length,'hasa aca llega', arrWords)
+    return arrWords.length
+  }
+}
 // Bonus Quest
 
 var matrix = [
