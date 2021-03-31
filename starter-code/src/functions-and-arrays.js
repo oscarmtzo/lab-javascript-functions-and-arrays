@@ -1,124 +1,71 @@
-  // Find the maximum
-  let maxOfTwoNumbers = (a,b) =>{
-    let maximo =Math.max(a,b)
-    return maximo
+  // Iteration #1: Find the maximum
+function maxOfTwoNumbers(num1, num2){
+  if(num1>num2){
+    return num1
+  }else{
+    return num2
   }
-  // Finding Longest Word
-  var words = [
-    'mystery',
-    'brother',
-    'aviator',
-    'crocodile',
-    'pearl',
-    'orchard',
-    'crackpot'
-  ];
-  
-  function findLongestWord(arr, maxValue, lngword, objword, daWord){
-    objword={}
-    lngword=[]
-    for(let i= 0;i<arr.length; i++){
-      objword[arr[i]]=arr[i].length
-      lngword.push(arr[i].length)
-    }
-    maxValue=Math.max(...lngword)
-    console.log(maxValue)
-    if(arr.length==0){
-      //console.log(undefined)
-      return undefined
-    }
-    else if(arr.length>=1){
-      for(let i=0; i<arr.length; i++){
-        //console.log(arr[i])
-        if(maxValue===arr[i].length){
-          daWord= arr[i]
-        }
-      }
-      //console.log(arr[0], daWord)
-      return daWord
-    }
-  
-  } 
-// Calculating a Sum
+}
 
-var numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
-function sumArray (arr, sum){
-  sum =0
-  for(let i=0; i<arr.length; i++){
-    console.log(arr[i], typeof arr[i])
-    sum+=arr[i]
+// Iteration #2: Find longest word
+const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
+function findLongestWord(arr){
+  if(arr.length!==1){
+    let sortedArr = arr.sort(function(a,b){
+      return b.length - a.length
+    })
+    return sortedArr[0]
   }
-  //console.log(arr.length,sum)
-  if(arr.length==0){
+  else {
+    return arr[0]
+  }
+}
+// Iteration #3: Calculate the sum
+
+const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
+function sumArray(arr){
+  if(arr.length === 0){
     return 0
   }else{
-    return arr[0], sum
+    let sum = 0
+    arr.forEach(element=>{ sum+=element})
+    return sum
   }
-  //ya esta todo bien
 }
-// Calculate the Average
-
-var numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
-const averageNumbers = (arr, sum, numArr, average) =>{
-  sum=0
-  numArr=0
-  if(arr.length==0){
-    return undefined
-  }else if(arr.length>=1){
-    for(let i=0; i<arr.length;i++){
-      sum+=arr[i]
+// Iteration #4: Calculate the average
+// Level 1: Array of numbers
+const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
+function averageNumbers(arr){
+  let average 
+  if(arr.length === 0){
+    average = undefined
+  }else{
+    average = sumArray(arr)/arr.length
+  }
+  return average
+}
+function avg(arr){
+  let total = 0
+  arr.forEach((element)=>{
+    if(typeof element == Number){
+      total+=element
+    }else{
+      total+=element.length
     }
-    numArr=arr.length
-    average=sum/numArr
-    return average
+  })
+  return total/=arr.length
+}
+// Level 2: Array of strings
+const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
+function averageWordLength(arr){
+  if(arr.length!==0){
+    return avg(arr)
+  }else{
+    return undefined  
   }
 }
-//averageWordLength
-const averageWordLength = (arr, sum, numArr, average) =>{
-  numArr=arr.length
-  sum=0
-  if(arr.length==0){
-    return undefined
-  }
-  else if(arr.length>=1){
-    for(let i=0; i<arr.length; i++){
-      sum+=arr[i].length
-    }
-    average=sum/numArr
-    return average
-  }
-}
-//uniquifyArray
-let uniquifyArray = (arr, newArr) => {
-  newArr=[]
-  if(arr.length==0){
-    return undefined
-  }
-  else if(arr.length>=1){
-    for(let i=0; i<arr.length; i++){
-      if(!newArr.includes(arr[i])){
-        newArr.push(arr[i])
-      }
-    }
-    return newArr
-  }
-}
-// Array of Strings
-var wordsArr = [
-  'seat',
-  'correspond',
-  'linen',
-  'motif',
-  'hole',
-  'smell',
-  'smart',
-  'chaos',
-  'fuel',
-  'palace'
-];
-
-// Unique Arrays
-var wordsUnique = [
+// Iteration #5: Unique arrays
+const wordsUnique = [
   'crab',
   'poison',
   'contagious',
@@ -131,51 +78,37 @@ var wordsUnique = [
   'simple',
   'bring'
 ];
+function uniquifyArray(arr){
+  modArr =[]
 
-// Finding Elements
-var wordsFind = [
-  'machine',
-  'subset',
-  'trouble',
-  'starting',
-  'matter',
-  'eating',
-  'truth',
-  'disobedience'
-];
-let doesWordExist = (arr, word, newArr,state) =>{
-  word=''
-  newArr=[]
-  if(arr.length==0){
-    return  false
-  }else if( arr.length>=1){
-    for(let i=0; i<arr.length; i++){
-      if(!newArr.includes(arr[i])){
-        newArr.push(arr[i])
+  if(arr.length!==0){
+    arr.forEach((element)=>{
+      if(modArr.indexOf(element) == -1){
+        modArr.push(element)
       }
-    }
-    /*for(let i=0; i<arr.length; i++){
-      if(arr.includes(newArr[i])){
-        state= true
-        return state
-      }else{
-        state=false
-        return state
-      }
-    }*/
-    if(!arr.includes(word)){
-      state=true
-      return state
-    }else if(arr.includes(word)==false){
-      state=false
-      return state
-    }
-     
+    })
+    
+    return modArr
+  }else {
+
+    return undefined
   }
 }
-
-// Counting Repetion
-var wordsCount = [
+// Iteration #6: Find elements
+const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
+function doesWordExist(arr, word){
+  if(arr.length!==0){
+    if(arr.includes(word)){
+      return true
+    }else{
+      return false
+    }
+  }else{
+    return false
+  }
+}
+// Iteration #7: Count repetition
+const wordsCount = [
   'machine',
   'matter',
   'subset',
@@ -188,29 +121,24 @@ var wordsCount = [
   'disobedience',
   'matter'
 ];
-let howManyTimes = (arr,searchWord, arrWords) => {
-  arrWords=[]
-  //console.log('searchWord:',searchWord)
-  if(arr.length==0){
-    //console.log(false)
+function howManyTimes(arr,word){
+  if(arr.length!==0){
+    total=0
+    arr.forEach(element=>{
+      if(element === word){
+        total++
+      }else{
+        total
+      }
+    })
+    return total
+  }else{
     return false
   }
-  //console.log('paso el primer condicional')
-  else if( arr.length >=1 ){
-    for(let i =0; i<arr.length; i++){
-      //console.log(arr[i])
-      if(arr[i]===searchWord){
-        //console.log(i)
-        arrWords.push(arr[i])
-      }
-    }
-    //console.log(arrWords.length,'hasa aca llega', arrWords)
-    return arrWords.length
-  }
 }
-// Bonus Quest
+// Iteration #8: Bonus
 
-var matrix = [
+const matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
   [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
@@ -232,3 +160,86 @@ var matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+function multiplicationArr(arr){
+  count=0
+  arr.forEach((element,index)=>{
+    if(index===0){
+      count+=element
+    }else{
+      count*=element
+    }
+  })
+  return count
+}
+function greatestProduct(arr){
+  total = []
+  arr.forEach((element, index)=>{
+    switch(index){
+      case 0:
+        total.push(multiplicationArr(element))
+        break;
+      case 1:
+        total.push(multiplicationArr(element))
+        break;
+      case 2:
+        total.push(multiplicationArr(element))
+        break;
+      case 3:
+        total.push(multiplicationArr(element))
+        break;
+      case 4:
+        total.push(multiplicationArr(element))
+        break;
+      case 5:
+        total.push(multiplicationArr(element))
+        break;
+      case 6:
+        total.push(multiplicationArr(element))
+        break;
+      case 7:
+        total.push(multiplicationArr(element))
+        break;
+      case 8:
+        total.push(multiplicationArr(element))
+        break;
+      case 9:
+        total.push(multiplicationArr(element))
+        break;
+      case 10:
+        total.push(multiplicationArr(element))
+        break;
+      case 11:
+        total.push(multiplicationArr(element))
+        break;
+      case 12:
+        total.push(multiplicationArr(element))
+        break;
+      case 13:
+        total.push(multiplicationArr(element))
+        break;
+      case 14:
+        total.push(multiplicationArr(element))
+        break;
+      case 15:
+        total.push(multiplicationArr(element))
+        break;
+      case 16:
+        total.push(multiplicationArr(element))
+        break;
+      case 17:
+        total.push(multiplicationArr(element))
+        break;
+      case 18:
+        total.push(multiplicationArr(element))
+        break;
+      case 19:
+        total.push(multiplicationArr(element))
+        break;
+    }
+  })
+  console.log(count)
+  total.sort((a,b)=>{
+    b-a
+  })
+  return total[0]
+}
